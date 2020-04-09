@@ -1,70 +1,49 @@
-<HTML>
-<HEAD>
-<TITLE>JavaScript生成的动态下雨背景效果</TITLE>
-</HEAD>
-<BODY bgcolor="#fef4d2" >
-<center>
-<script language=JavaScript>
-<!-- [Step1]: 在此能够设置雨滴的多少 -->
-var rainsize = 40;
-<!-- [Step2]: 这里可以更改下雨的速度，数值大速度慢 -->
-var speed = 10;
-var x = new Array();
-var y = new Array();
-var r = new Array();
-var cx = new Array();
-var cy = new Array();
-var doc_width = document.body.clientWidth;
-var doc_height = document.body.clientHeight;
-for(i=0; i<rainsize; ++i) {
-  initRain();
-  if (i == 0) {
-    document.write("<div id=\"dot"+ i +"\" style=\"POSITION: ");
-    document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
-    document.write("visible; TOP: 15px; LEFT: 15px;\"><font color=\"blue\">");
-    document.write(",</font></div>"); }
-  else {
-    document.write("<div id=\"dot"+ i +"\" style=\"POSITION: ");
-    document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
-    document.write("visible; TOP: 15px; LEFT: 15px;\"><font color=\"blue\">");
-    document.write(",.</font></div>");  }
-}
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML5 背景图片毛玻璃模糊特效DEMO演示</title>
 
-function initRain() {
-  a = 6;
-  r[i] = 1;
-  sn = Math.sin(a);
-  cs = Math.cos(a);
-  cx[i] = Math.random() * doc_width + 1;
-  cy[i] = Math.random() * doc_height + 1;
-  x[i] = r[i] * sn + cx[i];
-  y[i] = cy[i];
-}
+<link rel="stylesheet" type="text/css" href="css/demo.css">
+<link rel="stylesheet" type="text/css" href="css/loading.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
 
-function raindropIE() {
-  for (i = 0; i < rainsize; ++ i) {
-     updateRain();
-     if ((x[i] <= 1) || (x[i] >= (doc_width - 20)) || (y[i] >= (doc_height - 20))) {
-         makeRain();
-         doc_width = document.body.clientWidth;
-         doc_height = document.body.clientHeight; }
-     document.all["dot"+i].style.pixelTop = y[i];
-     document.all["dot"+i].style.pixelLeft = x[i]; }
-  setTimeout("raindropIE()", speed);
-}
-function updateRain() {
-  r[i] += 10;
-  x[i] = r[i] * sn + cx[i];
-  y[i] = r[i] * cs + cy[i];
-}
-function makeRain() {
-  r[i] = 1;
-  cx[i] = Math.random() * doc_width + 1;
-  cy[i] = 1;
-  x[i] = r[i] * sn + cx[i];
-  y[i] = r[i] * cs + cy[i];
-}
-raindropIE();
-</script>
-</BODY>
-</HTML>
+</head>
+<body space-top-bot="50px">
+
+<div class="page-loading__icon"></div>
+
+<div class="frosted-panel" panel-dimensions="80% 60%" breakpoint-type="min-width" breakpoints="600px 80% 80%, 1200px 60% 500px">
+
+	<svg>
+		<filter id="blurMe" filterRes="1200" color-interpolation-filters="sRGB">
+			<feGaussianBlur in="SourceGraphic" stdDeviation="7" />
+		</filter>
+
+		<image xlink:href="./img/bg1.jpg" x="0" y="0" width="2880" height="1620" filter="url(#blurMe)" />
+	</svg>
+
+	<div class="content" content-margin="5px">
+		<!-- ALL PANEL CONTENT GOES HERE -->
+		<!-- .flex-container is for demo purposes only -->
+		<div class="flex-container">
+			<span class="wh">80% 60%</span>
+			<span class="wh">80% 80%</span>
+			<span class="wh">这里是文字内容</span>
+		</div>
+		
+	</div>
+	
+</div>
+
+<script src="js/app.js"></script>
+
+<div style="text-align:center;clear:both;">
+<script src="/gg_bd_ad_720x90.js" type="text/javascript"></script>
+<script src="/follow.js" type="text/javascript"></script>
+</div>
+
+</body>
+</html>
